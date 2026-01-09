@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reporte de Investigación: Metodología y Resultados</title>
+    <title>Reporte de Investigación: Digitalización Inteligente</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -18,20 +18,15 @@
             --card-bg: rgba(255, 255, 255, 0.9);
             --border-light: #e2e8f0;
             --gradient-header: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%);
-            --chart-color-1: #3b82f6; /* Azul */
-            --chart-color-2: #84cc16; /* Verde */
-            --chart-color-3: #ef4444; /* Rojo */
-            --chart-color-4: #f97316; /* Naranja */
-            --chart-color-5: #6366f1; /* Morado */
-            --chart-color-6: #ec4899; /* Rosa */
+            --chart-color-1: #3b82f6;
+            --chart-color-2: #84cc16;
+            --chart-color-3: #ef4444;
+            --chart-color-4: #f97316;
+            --chart-color-5: #6366f1;
+            --chart-color-6: #ec4899;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
 
         body {
             background: var(--background);
@@ -60,8 +55,8 @@
         .nav-links a {
             text-decoration: none;
             color: var(--text);
-            margin-left: 2rem;
-            font-size: 0.9rem;
+            margin-left: 1.5rem;
+            font-size: 0.85rem;
             font-weight: 500;
             transition: color 0.3s;
         }
@@ -76,16 +71,9 @@
             margin-left: 2rem;
             transition: background 0.3s;
         }
-        .nav-button:hover { background: var(--secondary); }
 
-        /* Contenedor Principal */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 100px 20px 50px;
-        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 100px 20px 50px; }
 
-        /* Sección de Título */
         .hero-section {
             background: var(--gradient-header);
             padding: 60px 20px;
@@ -93,25 +81,25 @@
             margin-bottom: 3rem;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            position: relative;
-            overflow: hidden;
         }
 
-        .hero-section h2 {
-            font-size: 3.5rem;
-            color: var(--text);
-            margin-bottom: 1rem;
-            font-weight: 700;
-            line-height: 1.2;
-        }
-        .hero-section p {
-            font-size: 1.2rem;
-            color: var(--light-text);
-            max-width: 800px;
-            margin: 0 auto;
-        }
+        .hero-section h2 { font-size: 3rem; color: var(--text); margin-bottom: 1rem; font-weight: 700; }
 
-        /* Grid general para el contenido */
+        .btn-visualizar {
+            background: #0f172a;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+            transition: transform 0.2s;
+        }
+        .btn-visualizar:hover { transform: scale(1.05); }
+
         .content-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -119,394 +107,216 @@
             margin-top: 2rem;
         }
 
-        /* Tarjetas de Información */
-        .info-card, .result-card, .person-card, .data-card {
+        .info-card, .result-card, .person-card, .data-card, .feed-card {
             background: var(--card-bg);
             padding: 1.5rem;
             border-radius: 20px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.05);
             border: 1px solid var(--border-light);
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
             opacity: 0;
             transform: translateY(20px);
             transition: all 0.6s ease-out;
         }
-        .info-card.visible, .result-card.visible, .person-card.visible, .data-card.visible {
+        
+        .info-card.visible, .result-card.visible, .person-card.visible, .data-card.visible, .feed-card.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .info-card h3, .result-card h3, .person-card h3, .data-card h3 {
-            font-size: 1.4rem;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-        .info-card .icon, .person-card .icon, .data-card .icon {
-            font-size: 1.8rem;
-            color: var(--secondary);
-        }
-        .info-card p, .person-card p, .data-card p {
-            font-size: 0.95rem;
-            color: var(--light-text);
-            margin-bottom: 0;
+        .icon { font-size: 2rem; color: var(--primary); margin-bottom: 1rem; }
+        
+        .badge {
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            border-radius: 10px;
+            background: #dbeafe;
+            color: #1e40af;
+            text-transform: uppercase;
+            font-weight: bold;
         }
 
-        /* Gráficos */
+        /* Estilos de Gráficos */
         .chart-container {
-            background: var(--card-bg);
+            background: white;
             padding: 1.5rem;
             border-radius: 20px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            border: 1px solid var(--border-light);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease-out;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .chart-container.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .chart-container h4 {
-            font-size: 1.1rem;
-            color: var(--text);
-            margin-bottom: 1rem;
             text-align: center;
         }
-        .chart-labels {
-            width: 100%;
-            display: flex;
-            justify-content: space-around;
-            font-size: 0.8rem;
-            color: var(--light-text);
-            margin-top: 0.5rem;
-        }
-
-        /* Gráfica de Barras Vertical */
         .bar-chart-vertical {
             display: flex;
             align-items: flex-end;
-            gap: 1rem;
-            height: 150px;
-            width: 100%;
             justify-content: space-around;
-            padding: 0 10px;
-        }
-        .bar-chart-vertical .bar-column {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: 100%;
-            justify-content: flex-end;
-        }
-        .bar-chart-vertical .bar {
-            width: 30px;
-            background: var(--chart-color-1);
-            border-radius: 5px 5px 0 0;
-            height: 0%; /* Animado por JS */
-            transition: height 1.5s ease-out;
-            position: relative;
-        }
-        .bar-chart-vertical.visible .bar { height: var(--bar-height); }
-        .bar-chart-vertical .value {
-            position: absolute;
-            top: -20px;
-            font-size: 0.75rem;
-            color: var(--text);
-            font-weight: 600;
-        }
-        .bar-chart-vertical .label {
-            font-size: 0.8rem;
-            color: var(--light-text);
-            margin-top: 5px;
-            text-align: center;
-        }
-
-        /* Gráfica de Anillo/Dona */
-        .doughnut-chart {
-            position: relative;
-            width: 150px;
             height: 150px;
-            border-radius: 50%;
-            background: conic-gradient(
-                var(--chart-color-1) 0% var(--slice1-end),
-                var(--chart-color-2) var(--slice1-end) var(--slice2-end),
-                var(--chart-color-3) var(--slice2-end) var(--slice3-end),
-                var(--chart-color-4) var(--slice3-end) 100%
-            );
-            transition: background 1.5s ease-out; /* Animación de carga */
-            clip-path: circle(0%); /* Animado por JS */
+            margin: 20px 0;
         }
-        .doughnut-chart.visible { clip-path: circle(50%); }
-
-        .doughnut-chart::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
+        .bar { width: 30px; background: var(--primary); border-radius: 5px 5px 0 0; transition: height 1s; }
+        
+        .doughnut-chart {
+            width: 120px; height: 120px; margin: 0 auto; border-radius: 50%;
+            background: conic-gradient(var(--chart-color-1) 0% 25%, var(--chart-color-2) 25% 100%);
+            position: relative;
         }
-        .doughnut-legend {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 1rem;
-            justify-content: center;
-            font-size: 0.85rem;
-        }
-        .doughnut-legend-item {
-            display: flex;
-            align-items: center;
-            color: var(--light-text);
-        }
-        .doughnut-legend-item span {
-            width: 12px;
-            height: 12px;
-            border-radius: 3px;
-            margin-right: 5px;
+        .doughnut-chart::after {
+            content: ""; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 70px; height: 70px; background: white; border-radius: 50%;
         }
 
-        /* Asignaciones de equipo */
-        .team-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        .person-card {
-            align-items: center;
-            text-align: center;
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 1.5rem;
-        }
-        .person-card .icon {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-        }
-        .person-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.2rem;
-            color: var(--text);
-            background: none; 
-            -webkit-background-clip: unset;
-            -webkit-text-fill-color: unset;
-        }
-        .person-card span {
-            display: block;
-            font-size: 0.9rem;
-            color: var(--secondary);
-            font-weight: 600;
-            margin-bottom: 0.8rem;
-        }
-        .person-card p {
-            font-size: 0.85rem;
-            color: var(--light-text);
-            min-height: 50px; /* Para mantener la altura de las tarjetas */
-        }
-
-        /* Datos Duros */
-        .data-card h3 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--chart-color-4);
-        }
-        .data-card small {
-            display: block;
-            font-size: 0.8rem;
-            color: var(--light-text);
-            margin-top: 0.5rem;
-            font-style: italic;
-        }
-
-        /* Footer */
         footer {
             text-align: center;
             padding: 3rem 20px;
-            margin-top: 5rem;
             background: #f1f5f9;
             color: var(--light-text);
-            font-size: 0.9rem;
             border-top: 1px solid var(--border-light);
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-section h2 { font-size: 2.5rem; }
-            .nav-links { display: none; }
-            .content-grid, .team-section { grid-template-columns: 1fr; }
-            .bar-chart-vertical .bar { width: 20px; }
-        }
+        cite { display: block; font-size: 0.75rem; margin-top: 10px; color: var(--light-text); }
     </style>
 </head>
 <body>
 
     <nav>
-        <h1><i class="fas fa-chart-pie" style="margin-right: 8px; color: var(--secondary);"></i> Equipo 6</h1>
+        <h1><i class="fas fa-microchip" style="margin-right: 8px;"></i> Equipo 6</h1>
         <div class="nav-links">
             <a href="#metodologia">Metodología</a>
+            <a href="#intervencion">Intervención</a>
+            <a href="#ingenieria">Ingeniería</a>
             <a href="#resultados">Resultados</a>
-            <a href="#datos">Datos Duros</a>
-            <a href="#equipo">Equipo</a>
+            <a href="#aliados">Aliados</a>
         </div>
-        <a href="#" class="nav-button">UniverMilenium</a>
+        <a href="posiquedo.html" class="nav-button">UniverMilenium</a>
     </nav>
 
     <div class="container">
         
-        <header id="inicio" class="hero-section visible">
-            <h2>Digitalización Inteligente en MIPyMES - Reporte de Avance</h2>
-            <p>Este informe detalla la metodología aplicada y los primeros resultados cuantitativos de la encuesta.</p>
+        <header class="hero-section visible">
+            <h2>Digitalización Inteligente en MIPyMES</h2>
+            <p>Reporte Integral de Investigación: Transformación operativa y tecnológica en el Estado de México.</p>
+            <a href="posiquedo.html" class="btn-visualizar">
+                <i class="fas fa-eye"></i> Ver Producto Final
+            </a>
         </header>
 
         <section id="metodologia">
-            <h2 style="font-size: 2.5rem; text-align: center; margin-bottom: 3rem;">Metodología de Investigación Aplicada</h2>
+            <h2 style="text-align: center; margin-bottom: 2rem;">Metodología de Investigación</h2>
             <div class="content-grid">
                 <div class="info-card">
-                    <div class="icon"><i class="fas fa-search"></i></div>
-                    <h3>Enfoque Mixto (H. Sampieri)</h3>
-                    <p>Uso de métodos cualitativos (entrevista) y cuantitativos (encuesta) para una validación robusta y profunda de los datos.</p>
+                    <i class="fas fa-vial icon"></i>
+                    <h3>Enfoque Mixto</h3>
+                    <p>Integración de métodos cualitativos y cuantitativos para validar el impacto de las TIC en el crecimiento empresarial.</p>
                 </div>
                 <div class="info-card">
-                    <div class="icon"><i class="fas fa-chart-line"></i></div>
+                    <i class="fas fa-project-diagram icon"></i>
                     <h3>Alcance Correlacional</h3>
-                    <p>Busca establecer la relación directa entre el nivel de digitalización de la MIPyME y la eficiencia operativa y rentabilidad.</p>
-                </div>
-                <div class="info-card">
-                    <div class="icon"><i class="fas fa-clipboard-list"></i></div>
-                    <h3>Diseño Transversal</h3>
-                    <p>Los datos se recolectaron en un único momento para describir y analizar las variables en su estado actual (No Experimental).</p>
-                </div>
-                <div class="info-card">
-                    <div class="icon"><i class="fas fa-users"></i></div>
-                    <h3>Población</h3>
-                    <p>Micro y pequeñas empresas del sector comercio y servicios en el Estado de México.</p>
+                    <p>Determinamos la relación entre métodos manuales y fallas en la eficiencia operativa de los comercios.</p>
                 </div>
             </div>
         </section>
 
-        <section id="datos">
-            <h2 style="font-size: 2.5rem; text-align: center; margin-bottom: 3rem;">Soporte Documental (Datos Duros)</h2>
-            <div class="content-grid" style="grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));">
-                <div class="data-card" style="border-left: 5px solid var(--chart-color-3);">
-                    <div class="icon"><i class="fas fa-store-slash"></i></div>
-                    <h3>1.2 Millones</h3>
-                    <p>Número estimado de pequeñas tiendas en México que operan **sin digitalizar** su negocio.</p>
-                    <small>Fuente: El Financiero, 2025. (Contexto: Cerca del 40% del total de tienditas.)</small>
-                </div>
-                <div class="data-card" style="border-left: 5px solid var(--chart-color-1);">
-                    <div class="icon"><i class="fas fa-map-marked-alt"></i></div>
-                    <h3>2024</h3>
-                    <p>Año de los Censos Económicos de INEGI, que sustentan la relevancia de las MIPyMES en el Estado de México.</p>
-                    <small>Fuente: INEGI Censos Económicos 2024. (Fundamento para la elección de la población objetivo.)</small>
-                </div>
-            </div>
-        </section>
-
-        <section id="resultados">
-            <h2 style="font-size: 2.5rem; text-align: center; margin-bottom: 3rem;">Resultados Clave de la Encuesta</h2>
+        <section id="intervencion" style="margin-top: 4rem;">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Intervención del Modelo DI</h2>
             <div class="content-grid">
-                
-                <div class="chart-container">
-                    <h4>1. Método de Registro de Ventas Diario</h4>
-                    <div class="bar-chart-vertical" data-chart="bar-vertical">
-                        <div class="bar-column">
-                            <div class="bar" style="background: var(--chart-color-1);" data-value="55"></div>
-                            <span class="label">Cuaderno</span>
-                        </div>
-                        <div class="bar-column">
-                            <div class="bar" style="background: var(--chart-color-2);" data-value="25"></div>
-                            <span class="label">Memoria</span>
-                        </div>
-                        <div class="bar-column">
-                            <div class="bar" style="background: var(--chart-color-4);" data-value="15"></div>
-                            <span class="label">Excel/Caja</span>
-                        </div>
-                        <div class="bar-column">
-                            <div class="bar" style="background: var(--chart-color-3);" data-value="5"></div>
-                            <span class="label">Software</span>
-                        </div>
-                    </div>
-                    <small style="color: var(--text);">El 80% de los negocios dependen de métodos manuales o memorísticos.</small>
-                </div>
-
-                <div class="chart-container">
-                    <h4>2. Adopción de Software de Gestión</h4>
-                    <div class="doughnut-chart" data-chart="doughnut" 
-                         style="--slice1-end: 25%; --slice2-end: 100%; --slice3-end: 100%;">
-                    </div>
-                    <div class="doughnut-legend">
-                        <div class="doughnut-legend-item"><span style="background: var(--chart-color-1);"></span>Sí (25%)</div>
-                        <div class="doughnut-legend-item"><span style="background: var(--chart-color-2);"></span>No (75%)</div>
-                    </div>
-                    <small style="color: var(--text);">Solo 1 de cada 4 MIPyMES usa alguna herramienta digital.</small>
-                </div>
-
-                <div class="chart-container">
-                    <h4>3. Pérdida de Ventas por Falta de Stock</h4>
-                    <div class="doughnut-chart" data-chart="doughnut" 
-                         style="--slice1-end: 70%; --slice2-end: 100%; --slice3-end: 100%;">
-                    </div>
-                    <div class="doughnut-legend">
-                        <div class="doughnut-legend-item"><span style="background: var(--chart-color-3);"></span>Sí (70%)</div>
-                        <div class="doughnut-legend-item"><span style="background: var(--chart-color-2);"></span>No (30%)</div>
-                    </div>
-                    <small style="color: var(--text);">Alta correlación entre métodos manuales y mermas por agotamiento.</small>
-                </div>
-
-                <div class="result-card" style="grid-column: span 1 / auto; background: #e0f2fe;">
-                    <h3>Análisis de la Muestra</h3>
-                    <p>Los resultados de la encuesta validan la hipótesis central: la alta dependencia de métodos manuales impacta directamente en la eficiencia operativa. La principal barrera para la digitalización no es solo el costo (Pregunta 6), sino también el desconocimiento o la percepción de dificultad del sistema. Esto confirma la necesidad de un sistema tan "fácil de usar como WhatsApp" (Pregunta 7).</p>
+                <div class="info-card" style="grid-column: span 2;">
+                    <i class="fas fa-lightbulb icon"></i>
+                    <h3>Digitalización Inteligente (DI)</h3>
+                    <p>La intervención trasciende la simple automatización; se basa en convertir datos análogos en digitales para reducir el agotamiento operativo y las mermas. Se aplica un ángulo estratégico adaptado al tamaño de la empresa para asegurar una madurez digital progresiva.</p>
                 </div>
             </div>
         </section>
-        
-        <section id="equipo">
-            <h2 style="font-size: 2.5rem; text-align: center; margin-bottom: 3rem;">Asignación de Roles del Equipo</h2>
-            <div class="team-section">
-                
-                <div class="person-card">
-                    <div class="icon"><i class="fas fa-pencil-ruler"></i></div>
-                    <h3>Axel Nava</h3>
-                    <span>Diseño de Encuesta y Cuestionarios</span>
-                    <p>Responsable de la Operacionalización de Variables y la redacción final de los reactivos de la Encuesta Cuantitativa.</p>
+
+        <section id="ingenieria" style="margin-top: 4rem;">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Aportes de la Ingeniería</h2>
+            <div class="content-grid">
+                <div class="info-card" style="border-top: 5px solid var(--chart-color-5);">
+                    <i class="fas fa-code icon" style="color: var(--chart-color-5);"></i>
+                    <h3>Ingeniería en Sistemas</h3>
+                    <p><b>Aporte:</b> Diseño de arquitecturas de "Data Lake" para centralizar la información transaccional. Implementación de algoritmos de <i>Machine Learning</i> para predicción de stock.</p>
                 </div>
-                
-                <div class="person-card">
-                    <div class="icon"><i class="fas fa-id-card"></i></div>
-                    <h3>Eduardo Castañeda</h3>
-                    <span>Ficha Técnica y Público Objetivo</span>
-                    <p>Encargado de definir la Ficha Técnica del instrumento, la delimitación de la población y el muestreo.</p>
+                <div class="info-card" style="border-top: 5px solid var(--chart-color-4);">
+                    <i class="fas fa-industry icon" style="color: var(--chart-color-4);"></i>
+                    <h3>Ingeniería Industrial</h3>
+                    <p><b>Aporte:</b> Optimización de la cadena operativa mediante <i>Lean Management</i>, reduciendo tiempos de espera y maximizando el retorno de inversión (ROI) tecnológico.</p>
                 </div>
-                
-                <div class="person-card">
-                    <div class="icon"><i class="fas fa-book-open"></i></div>
-                    <h3>Jorge [Apellido]</h3>
-                    <span>Investigación Documental</span>
-                    <p>Lidera la búsqueda y referenciación de fuentes académicas y datos duros (INEGI, El Financiero) para el Marco Teórico.</p>
-                </div>
-                
-                <div class="person-card">
-                    <div class="icon"><i class="fas fa-chart-pie"></i></div>
-                    <h3>Owen Said</h3>
-                    <span>Muestra de Resultados y Gráficos</span>
-                    <p>Responsable de la tabulación, el análisis estadístico y la creación de las representaciones gráficas de los datos.</p>
+            </div>
+        </section>
+
+        <section id="resultados" style="margin-top: 4rem;">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Resultados y Datos Duros</h2>
+            <div class="content-grid">
+                <div class="chart-container info-card">
+                    <h4>Registro de Ventas Diario</h4>
+                    <div class="bar-chart-vertical">
+                        <div class="bar" style="height: 80%;"></div>
+                        <div class="bar" style="height: 15%; background: var(--accent);"></div>
+                        <div class="bar" style="height: 5%; background: var(--chart-color-3);"></div>
+                    </div>
+                    <p><small>80% depende de métodos manuales (Cuaderno/Memoria).</small></p>
                 </div>
 
+                <div class="data-card">
+                    <i class="fas fa-exclamation-triangle icon" style="color: var(--chart-color-3);"></i>
+                    <h3 style="font-size: 2rem;">1.2 Millones</h3>
+                    <p>Tienditas en México operan sin digitalización.</p>
+                    <cite>Fuente: El Financiero (2025). Sin digitalizar, cerca de 1.2 millones de tienditas.</cite>
+                </div>
+
+                <div class="data-card">
+                    <i class="fas fa-map-marker-alt icon"></i>
+                    <h3 style="font-size: 2rem;">817,094</h3>
+                    <p>Unidades económicas en el Estado de México.</p>
+                    <cite>Fuente: INEGI (2024). Censos Económicos: Resultados oportunos.</cite>
+                </div>
+            </div>
+        </section>
+
+        <section id="aliados" style="margin-top: 4rem;">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Empresas Colaboradoras</h2>
+            <div class="content-grid">
+                <div class="feed-card">
+                    <div style="display:flex; justify-content: space-between; align-items: center;">
+                        <b>Las Sabrositas</b> <span class="badge">Micro</span>
+                    </div>
+                    <p style="font-style: italic; margin-top: 10px;">"Perdíamos mucho tiempo en inventario manual. Ahora el control es automático y sin errores."</p>
+                </div>
+                <div class="feed-card">
+                    <div style="display:flex; justify-content: space-between; align-items: center;">
+                        <b>Burritos Estrada</b> <span class="badge">Pequeña</span>
+                    </div>
+                    <p style="font-style: italic; margin-top: 10px;">"Logramos reducir el tiempo de espera en caja en un 30% con el nuevo flujo operativo."</p>
+                </div>
+                <div class="feed-card">
+                    <div style="display:flex; justify-content: space-between; align-items: center;">
+                        <b>Ariz Boutique</b> <span class="badge">Mediana</span>
+                    </div>
+                    <p style="font-style: italic; margin-top: 10px;">"El análisis predictivo nos ayuda a no tener stock muerto de temporadas pasadas."</p>
+                </div>
+            </div>
+            <p style="font-size: 0.7rem; text-align: center; margin-top: 20px; color: var(--light-text);">
+                Referencia: Las Sabrositas, Burritos Estrada, & Ariz Boutique (2025). Autorización de uso de marca para fines académicos.
+            </p>
+        </section>
+
+        <section id="equipo" style="margin-top: 4rem;">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Equipo de Investigación</h2>
+            <div class="content-grid">
                 <div class="person-card">
-                    <div class="icon"><i class="fas fa-desktop"></i></div>
-                    <h3>Emmanuel [Apellido]</h3>
-                    <span>Presentación de Resultados</span>
-                    <p>Coordinador de la maquetación final del reporte, asegurando la coherencia y el formato visual profesional.</p>
+                    <i class="fas fa-user-tie icon"></i>
+                    <h3>Axel Nava</h3>
+                    <p>Líder de Proyecto / Sistemas</p>
+                </div>
+                <div class="person-card">
+                    <i class="fas fa-user-gear icon"></i>
+                    <h3>Eduardo Castañeda</h3>
+                    <p>Estrategia Industrial</p>
+                </div>
+                <div class="person-card">
+                    <i class="fas fa-user-astronomer icon"></i>
+                    <h3>Emmanuel Gonzales </h3>
+                    <p>Arquitectura de Datos</p>
+                </div>
+                <div class="person-card">
+                    <i class="fas fa-user-check icon"></i>
+                    <h3>Aaron Alcantar</h3>
+                    <p>Gestión de Calidad</p>
                 </div>
             </div>
         </section>
@@ -515,77 +325,18 @@
 
     <footer>
         <p>&copy; 2025 Proyecto de Investigación: Digitalización Inteligente en MIPyMES - UniverMilenium.</p>
-        <p>Equipo: Axel, Eduardo, Emmanuel, Jorge, Owen y Colaboradores.</p>
+        <p>Derechos Reservados: <b>ANH</b></p>
     </footer>
 
     <script>
-        // Animación al hacer Scroll para secciones y cards
-        const observerOptions = {
-            threshold: 0.1
-        };
-
-        const generalObserver = new IntersectionObserver((entries, observer) => {
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    // observer.unobserve(entry.target); 
-                }
+                if (entry.isIntersecting) entry.target.classList.add('visible');
             });
         }, observerOptions);
 
-        // Observar todas las tarjetas y secciones
-        document.querySelectorAll('section, .info-card, .result-card, .person-card, .data-card').forEach(element => {
-            generalObserver.observe(element);
-        });
-
-        // Observador específico para animar las gráficas
-        const chartObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    
-                    // Animación de barras verticales
-                    if (entry.target.querySelector('.bar-chart-vertical')) {
-                        entry.target.querySelectorAll('.bar-chart-vertical .bar').forEach(bar => {
-                            const value = parseInt(bar.dataset.value);
-                            bar.style.setProperty('--bar-height', `${value}%`);
-                            
-                            const valueSpan = document.createElement('span');
-                            valueSpan.classList.add('value');
-                            valueSpan.textContent = `${value}%`;
-                            bar.prepend(valueSpan);
-                        });
-                    }
-
-                    observer.unobserve(entry.target); // Solo animar una vez por gráfica
-                }
-            });
-        }, { threshold: 0.5 }); // Un poco más de umbral para las gráficas
-
-        document.querySelectorAll('.chart-container').forEach(chart => chartObserver.observe(chart));
-
-
-        // Efecto suave en los enlaces del menú
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    const offset = document.querySelector('nav').offsetHeight; 
-                    const bodyRect = document.body.getBoundingClientRect().top;
-                    const elementRect = targetElement.getBoundingClientRect().top;
-                    const elementPosition = elementRect - bodyRect;
-                    const offsetPosition = elementPosition - offset;
-
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
+        document.querySelectorAll('.info-card, .data-card, .feed-card, .person-card, .hero-section').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
